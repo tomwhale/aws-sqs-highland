@@ -8,5 +8,21 @@ This module produces a [Highland.js](http://highlandjs.org/) stream as it consum
 
 ```
     const sqs = require("aws-sqs-highland");
-    sqs.consume(paras);
+    sqs.consume(params);
+```
+
+The parameter options are:
+
+```
+{
+  awsConfig: {
+    accessKeyId: String,
+    secretAccessKey: String,
+    region: String
+  },
+  queueUrl: String [Required],
+  maxNumberOfMessages: Number [Default: 5],
+  visibilityTimeout: Number [Default: 0],
+  waitTimeSeconds: Number [Default: 0]
+}
 ```

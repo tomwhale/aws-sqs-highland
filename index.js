@@ -1,8 +1,9 @@
-const H = require('highland');
-const AWS = require('aws-sdk');
-const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
+const H = require ( 'highland' );
+const AWS = require ( 'aws-sdk' );
 
-module.exports = ( { count, queueUrl, visibilityTimeout, waitTimeSeconds, maxRetry } = { } ) => {
+module.exports = ( { awsConfig, count, queueUrl, visibilityTimeout, waitTimeSeconds, maxRetry } = { } ) => {
+  const sqs = new AWS.SQS ( awsConfig );
+
   const generator = ( attempt ) => {
     return H ( ( push, next ) => {
       return H.wrapCallback ( receiveMessage ) ( {
