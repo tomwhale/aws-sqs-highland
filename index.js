@@ -2,7 +2,7 @@ const H = require ( 'highland' );
 const AWS = require ( 'aws-sdk' );
 
 module.exports = ( { awsConfig, count, queueUrl, visibilityTimeout, waitTimeSeconds, maxRetry } = { } ) => {
-  const sqs = new AWS.SQS ( awsConfig );
+  const { receiveMessage } = new AWS.SQS ( awsConfig );
 
   const generator = ( attempt ) => {
     return H ( ( push, next ) => {
