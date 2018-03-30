@@ -14,8 +14,6 @@ module.exports = ( { awsConfig, count, queueUrl, visibilityTimeout, waitTimeSeco
       } )
        .each ( items => {
          if ( items.length ) {
-           retries = 0;
-
            items.forEach ( item => {
                push ( null, item );
            } );
