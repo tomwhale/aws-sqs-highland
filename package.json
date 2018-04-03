@@ -1,6 +1,6 @@
 {
   "name": "aws-sqs-highland",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Consumes from an AWS SQS stream and produces a Highland.js stream",
   "main": "index.js",
   "scripts": {

@@ -6,7 +6,7 @@ module.exports = ( { awsConfig, count, queueUrl, visibilityTimeout, waitTimeSeco
     apiVersion: '2012-11-05',
     ...awsConfig
   } );
-  
+
   const generator = ( attempt ) => {
     return H ( ( push, next ) => {
       return H.wrapCallback ( SQS.receiveMessage.bind ( SQS ) ) ( {
@@ -16,7 +16,7 @@ module.exports = ( { awsConfig, count, queueUrl, visibilityTimeout, waitTimeSeco
          WaitTimeSeconds: waitTimeSeconds || 0
       } )
        .each ( response => {
-         const items = response.Messages;
+         const items = response.Messages || [];
 
          if ( items.length ) {
            items.forEach ( item => {
