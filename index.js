@@ -2,11 +2,11 @@ const H = require ( 'highland' );
 const AWS = require ( 'aws-sdk' );
 
 module.exports = ( { awsConfig, count, queueUrl, visibilityTimeout, waitTimeSeconds, maxRetry } = { } ) => {
-  const { receiveMessage } = new AWS.SQS ( awsConfig );
+  const SQS = new AWS.SQS ( awsConfig );
 
   const generator = ( attempt ) => {
     return H ( ( push, next ) => {
-      return H.wrapCallback ( receiveMessage ) ( {
+      return H.wrapCallback ( SQS.receiveMessage.bind ( SQS ) ) ( {
          MaxNumberOfMessages: count || 5,
          QueueUrl: queueUrl,
          VisibilityTimeout: visibilityTimeout || 0,
